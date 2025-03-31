@@ -1,5 +1,4 @@
 #include "Squidbox.h"
-#include <Arduino.h>
 
 Squidbox *squidbox;
 
@@ -18,6 +17,10 @@ void setup() {
 }
 
 void loop() {
+  // https://docs.wokwi.com/faq#the-simulation-is-slow-how-can-i-make-it-faster
+#ifdef SIMULATION
+  delay(10);
+#endif
   // Continuously update the Squidbox instance
   // This function is called repeatedly by the Arduino framework and drives the
   // application

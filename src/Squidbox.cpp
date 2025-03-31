@@ -1,8 +1,13 @@
 #include "Squidbox.h"
 
 Squidbox::Squidbox() {
+#ifdef SIMULATION
+  midiController = new SimulatedMidiController();
+#else
   // Start the BLE MIDI server with the name of the device
-  BLEMidiServer.begin(getName());
+  midiController = new BLEMidiController(getName());
+#endif
+  midiController->begin();
 
   // Initialize the screen, joystick, knob, and buttons with their respective
   // pins
@@ -83,6 +88,8 @@ Button *Squidbox::getButton(int index) {
   // Return the button at the given index
   return buttons[index];
 }
+
+MidiController *Squidbox::getMidiController() { return midiController; }
 
 const char *Squidbox::getDeviceId() {
   // Get the default MAC address and format it as a string

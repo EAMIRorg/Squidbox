@@ -75,10 +75,17 @@ Direction Joystick::getDirection() {
   // the center.
   if (distance < JOYSTICK_DEADZONE) {
     return Direction::NONE;
+#if SIMULATION
+  } else if (y > 0 && y > fabs(x)) {
+    return Direction::DOWN;
+  } else if (y < 0 && -y > fabs(x)) {
+    return Direction::UP;
+#else
   } else if (y > 0 && y > fabs(x)) {
     return Direction::UP;
   } else if (y < 0 && -y > fabs(x)) {
     return Direction::DOWN;
+#endif
   } else if (x < 0 && -x > fabs(y)) {
     return Direction::LEFT;
   } else if (x > 0 && x > fabs(y)) {

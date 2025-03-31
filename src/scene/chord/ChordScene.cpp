@@ -54,11 +54,11 @@ void ChordScene::playChord(int index, bool on) {
   for (int i = 0; i < chordType->numNotes; i++) {
     keyboard->setKeyDown(notes[i], on);
     if (on) {
-      // If the chord should be played, send a note on message
-      BLEMidiServer.noteOn(0, notes[i], 127);
+      // If the chord should be played, play the note
+      squidbox->getMidiController()->sendNoteOn(notes[i], 127, 0);
     } else {
-      // If the chord should be stopped, send a note off message
-      BLEMidiServer.noteOff(0, notes[i], 127);
+      // If the chord should be stopped, stop playing the note
+      squidbox->getMidiController()->sendNoteOff(notes[i], 127, 0);
     }
   }
 }

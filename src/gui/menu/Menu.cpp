@@ -57,9 +57,11 @@ void Menu::drawMenu(Squidbox *squidbox) {
 
   // Print header bar
   screen->getDisplay()->printf(squidbox->getDeviceId());
-  screen->getDisplay()->printf("  BLE:");
-  int connected =
-      BLEMidiServer.isConnected() ? ASCII_UPPERCASE_Y : ASCII_UPPERCASE_N;
+  screen->getDisplay()->printf("  %s:",
+                               squidbox->getMidiController()->getName());
+  int connected = squidbox->getMidiController()->isConnected()
+                      ? ASCII_UPPERCASE_Y
+                      : ASCII_UPPERCASE_N;
   screen->getDisplay()->write(connected);
   // TODO: Get actual battery level
   screen->getDisplay()->printf("  100");

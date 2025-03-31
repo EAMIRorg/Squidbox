@@ -50,8 +50,8 @@ void NoteScene::playNote(int index, bool on) {
   // Play notes
   keyboard->setKeyDown(note, on);
   if (on) {
-    BLEMidiServer.noteOn(0, note, 127);
+    squidbox->getMidiController()->sendNoteOn(note, 127, 0);
   } else {
-    BLEMidiServer.noteOff(0, note, 127);
+    squidbox->getMidiController()->sendNoteOff(note, 127, 0);
   }
 }
