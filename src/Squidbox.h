@@ -28,6 +28,12 @@
 #define MIN_VOLTAGE 3.2 // Considered 0% (deep discharge)
 #define MAX_VOLTAGE 4.2 // Fully charged (100%)
 
+#ifdef SIMULATION
+#include "components/midi-controller/simulated-midi-controller/SimulatedMidiController.h"
+#else
+#include "components/midi-controller/ble-midi-controller/BLEMidiController.h"
+#endif
+
 /**
  * @class Squidbox
  * @brief This class represents the Squidbox device.
