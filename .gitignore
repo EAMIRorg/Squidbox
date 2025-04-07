@@ -14,3 +14,4 @@ src/config/config.h
 doxygen_log.txt
 html/
 latex/
+.DS_Store

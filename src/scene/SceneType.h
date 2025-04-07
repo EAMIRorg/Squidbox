@@ -11,6 +11,7 @@ enum SceneType {
   CHORD_SCENE,               ///< The chord scene.
   NOTE_SCENE,                ///< The note scene.
   DRUM_SCENE,                ///< The drum scene.
+  CUSTOM_SCENE,              ///< The custom scene.
   JOYSTICK_CALIBRATOR_SCENE, ///< The joystick calibrator scene.
   KNOB_SCENE,                ///< The knob scene.
   BUTTON_SCENE,              ///< The button scene.
@@ -24,4 +25,4 @@ enum SceneType {
 /**
  * @brief The total number of scenes.
  */
-const int NUM_SCENES = 7;
+const int NUM_SCENES = 8;

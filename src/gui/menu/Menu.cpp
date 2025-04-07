@@ -57,16 +57,16 @@ void Menu::drawMenu(Squidbox *squidbox) {
 
   // Print header bar
   screen->getDisplay()->printf(squidbox->getDeviceId());
-  screen->getDisplay()->printf("  %s:",
-                               squidbox->getMidiController()->getName());
-  int connected = squidbox->getMidiController()->isConnected()
-                      ? ASCII_UPPERCASE_Y
-                      : ASCII_UPPERCASE_N;
-  screen->getDisplay()->write(connected);
-  // TODO: Get actual battery level
-  screen->getDisplay()->printf("  100");
-  screen->getDisplay()->write(ASCII_PERCENT);
-  screen->getDisplay()->printf("\n");
+  ;
+  screen->getDisplay()->setCursor(Screen::WIDTH - 28, 0);
+  screen->getDisplay()->printf("%s:", squidbox->getMidiController()->getName());
+  const unsigned char *connectedIcon =
+      squidbox->getMidiController()->isConnected() ? CHECKMARK_BITMAP
+                                                   : X_BITMAP;
+  screen->getDisplay()->drawBitmap(Screen::WIDTH - 8, 0, connectedIcon, 8, 8,
+                                   WHITE);
+
+  screen->getDisplay()->setCursor(0, 8);
 
   // Print menu name
   if (hasParentScene()) {

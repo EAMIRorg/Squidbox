@@ -21,6 +21,16 @@ void loop() {
 #ifdef SIMULATION
   delay(10);
 #endif
+
+  // Check if data is available on the serial port
+  if (Serial.available() > 0) {
+    // Read the incoming data
+    String serialData = Serial.readStringUntil('\n');
+
+    // Parse the serial data
+    parseSerialData(serialData);
+  }
+
   // Continuously update the Squidbox instance
   // This function is called repeatedly by the Arduino framework and drives the
   // application

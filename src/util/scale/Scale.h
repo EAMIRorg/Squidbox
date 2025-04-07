@@ -16,7 +16,7 @@ class Scale {
 private:
   const char *name; ///< The name of the scale
   int numNotes;     ///< The number of notes in the scale
-  int *semitones;   ///< The semitones that make up the scale
+  unsigned char *semitones;   ///< The semitones that make up the scale
 
 public:
   static Scale *MAJOR;             ///< The Major scale
@@ -37,7 +37,7 @@ public:
    * @param numNotes The number of notes in the scale
    * @param semitones The semitones that make up the scale
    */
-  Scale(const char *name, int numNotes, int *semitones);
+  Scale(const char *name, int numNotes, unsigned char *semitones);
 
   /**
    * @brief Get the name of the scale
@@ -51,7 +51,7 @@ public:
    * @param index The index of the note
    * @return The note
    */
-  int getNote(int root, int index);
+  int getNote(unsigned char root, unsigned char index);
 
   /**
    * @brief Get the notes from a chord in the scale
@@ -60,5 +60,5 @@ public:
    * @param chord The chord
    * @return The notes from the chord
    */
-  int *getNotesFromChord(int root, int index, ChordType *chord);
+  int *getNotesFromChord(unsigned char root, unsigned char index, ChordType *chord);
 };

@@ -10,10 +10,12 @@
 #include "scene/button/ButtonScene.h"
 #include "scene/chord/ChordScene.h"
 #include "scene/drum/DrumScene.h"
+#include "scene/custom/CustomScene.h"
 #include "scene/joystick-calibrator/JoystickCalibratorScene.h"
 #include "scene/knob/KnobScene.h"
 #include "scene/main/MainScene.h"
 #include "scene/note/NoteScene.h"
+#include "upload/Upload.h"
 #include <Arduino.h>
 #include <esp_efuse.h>
 
@@ -22,6 +24,9 @@
 #else
 #include "components/midi-controller/ble-midi-controller/BLEMidiController.h"
 #endif
+
+#define MIN_VOLTAGE 3.2 // Considered 0% (deep discharge)
+#define MAX_VOLTAGE 4.2 // Fully charged (100%)
 
 /**
  * @class Squidbox
@@ -130,6 +135,12 @@ public:
    * @return The name of the Squidbox
    */
   const char *getName();
+
+  /**
+   * @brief Get the percentage of battery remaining
+   * @return The battery percentage remaining
+   */
+  const int getBatteryPercent();
 
 private:
   Scene *scenes[NUM_SCENES];     ///< An array of pointers to the scenes in the

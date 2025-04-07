@@ -2,6 +2,7 @@
 
 #include "gui/menu-item/MenuItem.h"
 #include "scene/SceneType.h"
+#include "config/chars.h"
 
 class Squidbox;
 
