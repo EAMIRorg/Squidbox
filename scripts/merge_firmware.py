@@ -39,8 +39,23 @@ def merge_bin(source, target, env):
 # Add a post action that runs esptoolpy to merge available flash images
 env.AddPostAction(APP_BIN, merge_bin)
 
+# Also ensure the merged binary exists before upload even if the program binary
+# wasn't rebuilt in this invocation (e.g., when only uploading an unchanged build).
+env.AddPreAction("upload", merge_bin)
+
 # Patch the upload command to flash the merged binary at address 0x0
-env.Replace(
-    UPLOADERFLAGS=[] + ["0x0", MERGED_BIN],
-    UPLOADCMD='"$PYTHONEXE" "$UPLOADER" $UPLOADERFLAGS',
+# Keep PlatformIO's default uploader flags (chip/port/baud/reset/write_flash options),
+# but replace the individual address/file pairs with our single merged image.
+original_upload_flags = list(env.get("UPLOADERFLAGS", []))
+first_addr_idx = next(
+    (i for i, flag in enumerate(original_upload_flags) if str(flag).startswith("0x")),
+    None,
 )
+
+if first_addr_idx is None:
+    # Unexpected shape; fall back to appending.
+    new_upload_flags = original_upload_flags + ["0x0", MERGED_BIN]
+else:
+    new_upload_flags = original_upload_flags[:first_addr_idx] + ["0x0", MERGED_BIN]
+
+env.Replace(UPLOADERFLAGS=new_upload_flags, UPLOADCMD='"$PYTHONEXE" "$UPLOADER" $UPLOADERFLAGS')
