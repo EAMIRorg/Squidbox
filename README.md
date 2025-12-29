@@ -31,6 +31,14 @@ Here are the general commands we use:
 If upload hangs on “Connecting…”, hold BOOT during that phase and release after the dots start. Press EN/reset to reboot after flashing.
 
 
+## Related
+
+- The Squidbox Configuration Editor is available at https://eamirorg.github.io/Squidbox-web-editor/
+
+- The Squidbox Configuration Editor source is available at https://github.com/EAMIRorg/Squidbox-web-editor 
+
+
+
 ## Contributing
 
 Navigate to the [CONTRIBUTING.md](./CONTRIBUTING.md) file for guidelines on how to contribute to the project.
