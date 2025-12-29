@@ -1,6 +1,26 @@
 # Squidbox
 
-The EAMIR Squidbox is a low-cost Bluetooth MIDI controller. It provides an intuitive and interactive way to learn about scales and chords while having fun making music. It runs on an ESP32 and features a 2-axis joystick, a small OLED screen, a knob, and multiple buttons.
+The EAMIR Squidbox is a low-cost Bluetooth MIDI controller. It provides an intuitive and interactive way to learn about scales and chords while having fun making music. It runs on an ESP32 and features a 2-axis joystick, a small OLED screen, a knob, and multiple buttons. 
+
+## Python + PlatformIO setup (macOS)
+
+In Terminal on MacOS: 
+- Verify Python 3 is available by running: `python3 --version`
+- Install PlatformIO via pip (preferred): `python3 -m pip install --user platformio` (or `pip3 install --user platformio`)
+- Confirm install: `python3 -m platformio --version`
+- If `platformio`/`pio` is not found, add your Python user bin to PATH:
+  - Find the user base: `python3 -m site --user-base` (expect something like `/Users/<you>/Library/Python/3.xx`)
+  - Add it: `echo 'export PATH="/Users/<you>/Library/Python/3.xx/bin:$PATH"' >> ~/.zshrc && source ~/.zshrc`
+- If all of that fails, use install platformio through Homebrew as an alternative: `brew install platformio`
+
+In VSCode:
+- Restart VSCode
+- Open the Terminal and test by running: `which platformio`, `which pio`, `pio --version`
+- If it still cannot find `pio`, set the same PATH in VS Code settings (`terminal.integrated.env.osx`) or select the `python3` interpreter in the Command Palette by Opening VS Code settings (Command Palette → “Preferences: Open User Settings (JSON)”). Add or update this: "terminal.integrated.env.osx": {
+  "PATH": "/Users/<you>/Library/Python/3.xx/bin:${env:PATH}"
+}
+ (replace with your actual user bin path from python3 -m site --user-base):
+
 
 ## Flashing Quickstart (PlatformIO CLI)
 
