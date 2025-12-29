@@ -11,11 +11,11 @@ In Terminal on MacOS:
 - If `platformio`/`pio` is not found, add your Python user bin to PATH:
   - Find the user base: `python3 -m site --user-base` (expect something like `/Users/<you>/Library/Python/3.xx`)
   - Add it: `echo 'export PATH="/Users/<you>/Library/Python/3.xx/bin:$PATH"' >> ~/.zshrc && source ~/.zshrc`
-- If all of that fails, use install platformio through Homebrew as an alternative: `brew install platformio`
+- Alternatively, install platformio through Homebrew: `brew install platformio`
 
 In VSCode:
 - Restart VSCode
-- Open the Terminal and test by running: `which platformio`, `which pio`, `pio --version`
+- Open the Terminal and test by running: `platformio --version` (or `pio --version`),`which platformio` (or `which pio`)
 - If it still cannot find `pio`, set the same PATH in VS Code settings (`terminal.integrated.env.osx`) or select the `python3` interpreter in the Command Palette by Opening VS Code settings (Command Palette → “Preferences: Open User Settings (JSON)”). Add or update this: "terminal.integrated.env.osx": {
   "PATH": "/Users/<you>/Library/Python/3.xx/bin:${env:PATH}"
 }
