@@ -14,7 +14,7 @@ In VS Code, set the integrated terminal to use `zsh`
 
 In Terminal on MacOS: 
 - Verify Python 3 is available by running: `python3 --version`
-  - If Python is not installed, install it from `https://www.python.org/downloads/` (or via Homebrew: `brew install python`)
+  - If Python is not installed, install it from the [Python website](https://www.python.org/downloads/) (or via Homebrew: `brew install python`)
 - Install PlatformIO via pip (preferred): `python3 -m pip install --user platformio` (or `pip3 install --user platformio`) (or through Homebrew: `brew install platformio`)
   - If an error indicates that pip is not installed, reinstall python using one of the above methods (or run `sudo apt-get install python3-pip`)
 - Confirm install: `python3 -m platformio --version`
