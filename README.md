@@ -25,10 +25,11 @@ In Terminal on MacOS:
 In VSCode:
 - Restart VSCode
 - Open a new Terminal window and test by running: `platformio --version` (or `pio --version`),`which platformio` (or `which pio`)
-- If pio isn’t found in VS Code’s integrated terminal, set the same PATH there: View (Menu)→ Command Palette → ‘Preferences: Open User Settings (JSON)’ and add
-"terminal.integrated.env.osx": { "PATH": "/Users/<you>/Library/Python/3.x/bin:${env:PATH}" }
-(replace with your user bin path from python3 -m site --user-base). Make sure the default profile is zsh
- (replace with your actual user bin path from python3 -m site --user-base):
+- If `pio` isn’t found in VS Code’s integrated terminal, open the Command Palette (View → Command Palette → “Preferences: Open User Settings (JSON)”) and add:
+"terminal.integrated.env.osx": {
+  "PATH": "/Users/<you>/Library/Python/3.x/bin:${env:PATH}"
+}
+Replace `<you>` with your username (from `python3 -m site --user-base`) and make sure the default terminal profile is `zsh`.
 
 
 ## Flashing Quickstart (PlatformIO CLI)
