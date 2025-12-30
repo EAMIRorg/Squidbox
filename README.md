@@ -6,12 +6,12 @@ The EAMIR Squidbox is a low-cost Bluetooth MIDI controller. It provides an intui
 
 In Terminal on MacOS: 
 - Verify Python 3 is available by running: `python3 --version`
-- Install PlatformIO via pip (preferred): `python3 -m pip install --user platformio` (or `pip3 install --user platformio`)
+  - If not installed, install from `https://www.python.org/downloads/` (or through Homebrew: `brew install python`)
+- Install PlatformIO via pip (preferred): `python3 -m pip install --user platformio` (or `pip3 install --user platformio`) (or through Homebrew: `brew install platformio`)
 - Confirm install: `python3 -m platformio --version`
 - If `platformio`/`pio` is not found, add your Python user bin to PATH:
   - Find the user base: `python3 -m site --user-base` (expect something like `/Users/<you>/Library/Python/3.xx`)
   - Add run: `echo 'export PATH="/Users/<you>/Library/Python/3.xx/bin:$PATH"' >> ~/.zshrc && source ~/.zshrc`
-- Alternatively, install platformio through Homebrew: `brew install platformio`
 
 In VSCode:
 - Restart VSCode
