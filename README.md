@@ -4,8 +4,8 @@ The EAMIR Squidbox is a low-cost Bluetooth MIDI controller. It provides an intui
 
 ## VSCode Setup and Extensions
 
-In VSCode, install the extensions: 
-— PlatformIO
+In VSCode, install the extensions:
+- PlatformIO
 - Wokwi (optional) - required only for simulating Squidbox; see [CONTRIBUTING.md](./CONTRIBUTING.md) for more details
 
 In VS Code, set the integrated terminal to use zsh
