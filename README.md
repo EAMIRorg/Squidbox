@@ -8,7 +8,7 @@ In VSCode, install the extensions:
 - PlatformIO
 - Wokwi (optional) - required only for simulating Squidbox; see [CONTRIBUTING.md](./CONTRIBUTING.md) for more details
 
-In VS Code, set the integrated terminal to use zsh
+In VS Code, set the integrated terminal to use `zsh`
 
 ## Python + PlatformIO setup (MacOS)
 
