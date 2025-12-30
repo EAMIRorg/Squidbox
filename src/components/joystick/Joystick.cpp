@@ -56,7 +56,12 @@ float Joystick::getX() {
 
 float Joystick::getY() {
   // Convert the raw Y value to a value in the range -1 to 1 and return it.
+  // Invert on hardware so pushing the stick up yields positive (UP) values.
+#ifdef SIMULATION
   return convertRawValue(getRawY(), Y_CENTER, Y_MIN, Y_MAX);
+#else
+  return -convertRawValue(getRawY(), Y_CENTER, Y_MIN, Y_MAX);
+#endif
 }
 
 bool Joystick::isPressed() {
