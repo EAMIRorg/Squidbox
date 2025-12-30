@@ -10,7 +10,7 @@ In Terminal on MacOS:
 - Confirm install: `python3 -m platformio --version`
 - If `platformio`/`pio` is not found, add your Python user bin to PATH:
   - Find the user base: `python3 -m site --user-base` (expect something like `/Users/<you>/Library/Python/3.xx`)
-  - Add it: `echo 'export PATH="/Users/<you>/Library/Python/3.xx/bin:$PATH"' >> ~/.zshrc && source ~/.zshrc`
+  - Add run: `echo 'export PATH="/Users/<you>/Library/Python/3.xx/bin:$PATH"' >> ~/.zshrc && source ~/.zshrc`
 - Alternatively, install platformio through Homebrew: `brew install platformio`
 
 In VSCode:
