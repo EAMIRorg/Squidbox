@@ -2,12 +2,21 @@
 
 The EAMIR Squidbox is a low-cost Bluetooth MIDI controller. It provides an intuitive and interactive way to learn about scales and chords while having fun making music. It runs on an ESP32 and features a 2-axis joystick, a small OLED screen, a knob, and multiple buttons. 
 
+## VSCode Setup and Extensions
+
+In VSCode, install the extensions: 
+— PlatformIO
+- Wokwi (optional) - required only for simulating Squidbox; see [CONTRIBUTING.md](./CONTRIBUTING.md) for more details
+
+In VS Code, set the integrated terminal to use zsh
+
 ## Python + PlatformIO setup (macOS)
 
 In Terminal on MacOS: 
 - Verify Python 3 is available by running: `python3 --version`
-  - If not installed, install from `https://www.python.org/downloads/` (or through Homebrew: `brew install python`)
+  - If Python is not installed, install it from `https://www.python.org/downloads/` (or via Homebrew: `brew install python`)
 - Install PlatformIO via pip (preferred): `python3 -m pip install --user platformio` (or `pip3 install --user platformio`) (or through Homebrew: `brew install platformio`)
+  - If an error indicates that pip is not installed, reinstall python using one of the above methods (or run `sudo apt-get install python3-pip`)
 - Confirm install: `python3 -m platformio --version`
 - If `platformio`/`pio` is not found, add your Python user bin to PATH:
   - Find the user base: `python3 -m site --user-base` (expect something like `/Users/<you>/Library/Python/3.xx`)
