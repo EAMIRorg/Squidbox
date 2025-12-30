@@ -10,7 +10,7 @@ In VSCode, install the extensions:
 
 In VS Code, set the integrated terminal to use zsh
 
-## Python + PlatformIO setup (macOS)
+## Python + PlatformIO setup (MacOS)
 
 In Terminal on MacOS: 
 - Verify Python 3 is available by running: `python3 --version`
@@ -24,10 +24,10 @@ In Terminal on MacOS:
 
 In VSCode:
 - Restart VSCode
-- Open the Terminal and test by running: `platformio --version` (or `pio --version`),`which platformio` (or `which pio`)
-- If it still cannot find `pio`, set the same PATH in VS Code settings (`terminal.integrated.env.osx`) or select the `python3` interpreter in the Command Palette by Opening VS Code settings (Command Palette → “Preferences: Open User Settings (JSON)”). Add or update this: "terminal.integrated.env.osx": {
-  "PATH": "/Users/<you>/Library/Python/3.xx/bin:${env:PATH}"
-}
+- Open a new Terminal window and test by running: `platformio --version` (or `pio --version`),`which platformio` (or `which pio`)
+- If pio isn’t found in VS Code’s integrated terminal, set the same PATH there: View (Menu)→ Command Palette → ‘Preferences: Open User Settings (JSON)’ and add
+"terminal.integrated.env.osx": { "PATH": "/Users/<you>/Library/Python/3.x/bin:${env:PATH}" }
+(replace with your user bin path from python3 -m site --user-base). Make sure the default profile is zsh
  (replace with your actual user bin path from python3 -m site --user-base):
 
 
