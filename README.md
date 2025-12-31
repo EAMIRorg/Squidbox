@@ -23,13 +23,14 @@ Open the Terminal utility on MacOS, and copy and run:
 
 ```bash
 /bin/bash -c 'set -euo pipefail
+trap '"'"'echo "PlatformIO install failed." >&2'"'"' ERR
 if ! command -v python3 >/dev/null; then
   echo "Python 3 not found. Install it first (e.g., brew install python)." >&2
   exit 1
 fi
 
 TMP_PIO="$(mktemp -t get-platformio.XXXXXX.py)"
-trap 'rm -f "$TMP_PIO"' EXIT
+trap '"'"'rm -f "$TMP_PIO"'"'"' EXIT
 curl -fsSL https://raw.githubusercontent.com/platformio/platformio-core-installer/master/get-platformio.py -o "$TMP_PIO"
 python3 "$TMP_PIO"
 
@@ -64,21 +65,27 @@ In Terminal on MacOS:
 In PowerShell on Windows, copy and run:
 
 ```powershell
-python --version  # ensure Python 3 is installed and on PATH
+try {
+  python --version  # ensure Python 3 is installed and on PATH
 
-$tmp = [IO.Path]::GetTempFileName()
-Invoke-WebRequest -UseBasicParsing https://raw.githubusercontent.com/platformio/platformio-core-installer/master/get-platformio.py -OutFile $tmp
-python $tmp
-Remove-Item $tmp -ErrorAction SilentlyContinue
+  $tmp = [IO.Path]::GetTempFileName()
+  Invoke-WebRequest -UseBasicParsing https://raw.githubusercontent.com/platformio/platformio-core-installer/master/get-platformio.py -OutFile $tmp
+  python $tmp
+  Remove-Item $tmp -ErrorAction SilentlyContinue
 
-python -m platformio --version
+  python -m platformio --version
 
-$UserBin = python -m site --user-base | % { "$_\Scripts" }
-if (-not ($env:PATH -split ";" | ? { $_ -eq $UserBin })) {
-  [System.Environment]::SetEnvironmentVariable("Path", "$UserBin;$env:Path", "User")
-  Write-Host "Added $UserBin to user PATH. Restart terminal."
+  $UserBin = python -m site --user-base | % { "$_\Scripts" }
+  if (-not ($env:PATH -split ";" | ? { $_ -eq $UserBin })) {
+    [System.Environment]::SetEnvironmentVariable("Path", "$UserBin;$env:Path", "User")
+    Write-Host "Added $UserBin to user PATH. Restart terminal."
+  }
+  Write-Host "PlatformIO install complete."
 }
-Write-Host "PlatformIO install complete."
+catch {
+  Write-Error "PlatformIO install failed: $_"
+  exit 1
+}
 ```
 
 
