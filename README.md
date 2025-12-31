@@ -2,7 +2,15 @@
 
 The EAMIR Squidbox is a low-cost Bluetooth MIDI controller. It provides an intuitive and interactive way to learn about scales and chords while having fun making music. It runs on an ESP32 and features a 2-axis joystick, a small OLED screen, a knob, and multiple buttons. 
 
-# VSCode Setup and Extensions
+# General Setup
+
+  - Install [Python](https://www.python.org/downloads/) (or via Homebrew: `brew install python`)
+
+  Once Python is installed, follow one of the setup methods described below. 
+
+## VSCode Setup and Extensions
+
+  - Install [VSCode](https://code.visualstudio.com/download)
 
 In VSCode, install the extensions:
 - PlatformIO
@@ -10,16 +18,8 @@ In VSCode, install the extensions:
 
 In VS Code, set the integrated terminal to use `zsh`
 
-# General Setup
-
-  - Install [Python](https://www.python.org/downloads/) (or via Homebrew: `brew install python`)
-
-  Once Python is installed, follow one of the setup methods described below. 
-
-
-
 # Automatic Setup for MacOS (Python + PlatformIO)
-Open Terminal on MacOS, and copy and run: 
+Open the Terminal utility on MacOS, and copy and run: 
 
 ```bash
 /bin/bash -c 'set -euo pipefail
@@ -92,7 +92,7 @@ In VSCode:
 Replace `<you>` with your username (from `python3 -m site --user-base`) and make sure the default terminal profile is `zsh`.
 
 
-# Flashing Quickstart in VSCode (PlatformIO CLI)
+# Flashing the Squidbox in VSCode
 
 Assumes you have the board connected (USB) and PlatformIO CLI installed (`pip install platformio` and make sure `pio` is on your PATH).
 
@@ -102,10 +102,7 @@ In VSCode:
 - Replace `/dev/cu.usbserial-XXXX` with your serial port in the commands below (check with `pio device list` again if unsure).
 - Copy and enter this two-line command below (with your serial port) to build the code and push it to the Squidbox:
 
-# Build + upload main firmware
 pio run -e adafruit_feather_esp32_v2 -t upload --upload-port /dev/cu.usbserial-59690893931
-
-# Upload the LittleFS data (presets in data/config.json)
 pio run -e adafruit_feather_esp32_v2 -t uploadfs --upload-port /dev/cu.usbserial-59690893931
 
 
