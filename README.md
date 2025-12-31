@@ -28,7 +28,10 @@ if ! command -v python3 >/dev/null; then
   exit 1
 fi
 
-curl -fsSL https://raw.githubusercontent.com/platformio/platformio-core-installer/master/get-platformio.py | python3 -
+TMP_PIO="$(mktemp -t get-platformio.XXXXXX.py)"
+trap 'rm -f "$TMP_PIO"' EXIT
+curl -fsSL https://raw.githubusercontent.com/platformio/platformio-core-installer/master/get-platformio.py -o "$TMP_PIO"
+python3 "$TMP_PIO"
 
 python3 -m platformio --version
 
@@ -62,7 +65,10 @@ In PowerShell on Windows, copy and run:
 ```powershell
 python --version  # ensure Python 3 is installed and on PATH
 
-(Invoke-WebRequest -UseBasicParsing https://raw.githubusercontent.com/platformio/platformio-core-installer/master/get-platformio.py).Content | python -
+$tmp = [IO.Path]::GetTempFileName()
+Invoke-WebRequest -UseBasicParsing https://raw.githubusercontent.com/platformio/platformio-core-installer/master/get-platformio.py -OutFile $tmp
+python $tmp
+Remove-Item $tmp -ErrorAction SilentlyContinue
 
 python -m platformio --version
 
