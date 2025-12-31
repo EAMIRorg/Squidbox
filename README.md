@@ -34,15 +34,20 @@ trap '"'"'rm -f "$TMP_PIO"'"'"' EXIT
 curl -fsSL https://raw.githubusercontent.com/platformio/platformio-core-installer/master/get-platformio.py -o "$TMP_PIO"
 python3 "$TMP_PIO"
 
-python3 -m platformio --version
-
-USER_BIN="$(python3 -m site --user-base)/bin"
-if ! echo ":$PATH:" | grep -q ":$USER_BIN:"; then
-  echo "export PATH=\"${USER_BIN}:\$PATH\"" >> "$HOME/.zshrc"
-  export PATH="${USER_BIN}:$PATH"
-  echo "Added ${USER_BIN} to PATH in ~/.zshrc. Restart shell or run: source ~/.zshrc"
+PIO_BIN_DIR="$HOME/.platformio/penv/bin"
+if [ -x "$PIO_BIN_DIR/platformio" ]; then
+  "$PIO_BIN_DIR/platformio" --version
 else
-  echo "PATH already includes ${USER_BIN}"
+  echo "PlatformIO binary not found at $PIO_BIN_DIR/platformio" >&2
+  exit 1
+fi
+
+if ! echo ":$PATH:" | grep -q ":$PIO_BIN_DIR:"; then
+  echo "export PATH=\"${PIO_BIN_DIR}:\$PATH\"" >> "$HOME/.zshrc"
+  export PATH="${PIO_BIN_DIR}:$PATH"
+  echo "Added ${PIO_BIN_DIR} to PATH in ~/.zshrc. Restart shell or run: source ~/.zshrc"
+else
+  echo "PATH already includes ${PIO_BIN_DIR}"
 fi
 echo "PlatformIO install complete."
 '
@@ -73,12 +78,19 @@ try {
   python $tmp
   Remove-Item $tmp -ErrorAction SilentlyContinue
 
-  python -m platformio --version
+  $PioBin = Join-Path $HOME ".platformio/penv/Scripts/platformio.exe"
+  if (Test-Path $PioBin) {
+    & $PioBin --version
+  } else {
+    throw "PlatformIO binary not found at $PioBin"
+  }
 
-  $UserBin = python -m site --user-base | % { "$_\Scripts" }
-  if (-not ($env:PATH -split ";" | ? { $_ -eq $UserBin })) {
-    [System.Environment]::SetEnvironmentVariable("Path", "$UserBin;$env:Path", "User")
-    Write-Host "Added $UserBin to user PATH. Restart terminal."
+  $PioDir = Split-Path $PioBin
+  if (-not ($env:PATH -split ";" | ? { $_ -eq $PioDir })) {
+    [System.Environment]::SetEnvironmentVariable("Path", "$PioDir;$env:Path", "User")
+    Write-Host "Added $PioDir to user PATH. Restart terminal."
+  } else {
+    Write-Host "PATH already includes $PioDir"
   }
   Write-Host "PlatformIO install complete."
 }
