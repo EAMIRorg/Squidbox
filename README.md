@@ -53,6 +53,8 @@ echo "PlatformIO install complete."
 '
 ```
 
+**Note:** The installer creates and uses its own virtualenv binary (`~/.platformio/penv/bin/platformio` on macOS, `~/.platformio/penv/Scripts/platformio.exe` on Windows). The verification step above calls that binary and adds its directory to your PATH.
+
 ## Manual Setup for MacOS (Python + PlatformIO)
 
 In Terminal on MacOS: 
