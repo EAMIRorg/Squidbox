@@ -106,7 +106,7 @@ pio run -e adafruit_feather_esp32_v2 -t upload --upload-port /dev/cu.usbserial-5
 pio run -e adafruit_feather_esp32_v2 -t uploadfs --upload-port /dev/cu.usbserial-59690893931
 
 
-# General Commands
+## General Commands
 
 Here are the general commands we use with Squidbox:
 
