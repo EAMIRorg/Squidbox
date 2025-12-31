@@ -2,7 +2,7 @@
 
 The EAMIR Squidbox is a low-cost Bluetooth MIDI controller. It provides an intuitive and interactive way to learn about scales and chords while having fun making music. It runs on an ESP32 and features a 2-axis joystick, a small OLED screen, a knob, and multiple buttons. 
 
-# General Setup
+# General Setup (Mac and Windows)
 
   - Install [Python](https://www.python.org/downloads/) (or via Homebrew: `brew install python`)
 
@@ -12,11 +12,11 @@ The EAMIR Squidbox is a low-cost Bluetooth MIDI controller. It provides an intui
 
   - Install [VSCode](https://code.visualstudio.com/download)
 
-In VSCode, install the extensions:
+In VSCode, install the following extensions (View → Extensions):
 - PlatformIO
-- Wokwi (optional) - required only for simulating Squidbox; see [CONTRIBUTING.md](./CONTRIBUTING.md) for more details
 
-In VS Code, set the integrated terminal to use `zsh`
+In VS Code, open the Terminal (Terminal → New Terminal) and set the integrated terminal to use `zsh`
+
 
 # Automatic Setup for MacOS (Python + PlatformIO)
 Open the Terminal utility on MacOS, and copy and run: 
