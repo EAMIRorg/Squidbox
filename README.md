@@ -21,6 +21,7 @@ In VS Code, set the integrated terminal to use `zsh`
 # Automatic Setup for MacOS (Python + PlatformIO)
 Open Terminal on MacOS, and copy and run: 
 
+```bash
 /bin/bash -c 'set -euo pipefail
 if ! command -v python3 >/dev/null; then
   echo "Python 3 not found. Install it first (e.g., brew install python)." >&2
@@ -40,6 +41,7 @@ else
   echo "PATH already includes ${USER_BIN}"
 fi
 '
+```
 
 ## Manual Setup for MacOS (Python + PlatformIO)
 
@@ -57,6 +59,7 @@ In Terminal on MacOS:
 
 In PowerShell on Windows, copy and run:
 
+```powershell
 python --version  # ensure Python 3 is installed and on PATH
 
 (Invoke-WebRequest -UseBasicParsing https://raw.githubusercontent.com/platformio/platformio-core-installer/master/get-platformio.py).Content | python -
@@ -68,6 +71,7 @@ if (-not ($env:PATH -split ";" | ? { $_ -eq $UserBin })) {
   [System.Environment]::SetEnvironmentVariable("Path", "$UserBin;$env:Path", "User")
   Write-Host "Added $UserBin to user PATH. Restart terminal."
 }
+```
 
 
 
