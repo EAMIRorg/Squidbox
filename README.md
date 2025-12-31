@@ -43,6 +43,7 @@ if ! echo ":$PATH:" | grep -q ":$USER_BIN:"; then
 else
   echo "PATH already includes ${USER_BIN}"
 fi
+echo "PlatformIO install complete."
 '
 ```
 
@@ -77,6 +78,7 @@ if (-not ($env:PATH -split ";" | ? { $_ -eq $UserBin })) {
   [System.Environment]::SetEnvironmentVariable("Path", "$UserBin;$env:Path", "User")
   Write-Host "Added $UserBin to user PATH. Restart terminal."
 }
+Write-Host "PlatformIO install complete."
 ```
 
 
