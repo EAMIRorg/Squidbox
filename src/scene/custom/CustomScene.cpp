@@ -1,14 +1,18 @@
+#include "CustomScene.h"
 #include "Squidbox.h"
+#include "gui/menu-item/random-velocity/RandomVelocityMenuItem.h"
 
 CustomScene::CustomScene(Squidbox *squidbox) : Scene(squidbox, nullptr) {
   presetMenuItem = new PresetMenuItem();
+  randomVelocityMenuItem = new RandomVelocityMenuItem(squidbox);
 
   // Create an array of menu items
-  MenuItem **menuItems = new MenuItem *[1];
+  MenuItem **menuItems = new MenuItem *[2];
   menuItems[0] = presetMenuItem;
+  menuItems[1] = randomVelocityMenuItem;
 
   // Create a new menu with the menu items
-  menu = new Menu("Custom", 1, menuItems, MAIN_SCENE);
+  menu = new Menu("Custom", 2, menuItems, MAIN_SCENE);
 
   // Create a new keyboard
   keyboard = new Keyboard(squidbox);
@@ -43,7 +47,8 @@ void CustomScene::playChord(int index, bool on) {
     keyboard->setKeyDown(notes[i], on);
     if (on) {
       // If the chord should be played, send a note on message
-      squidbox->getMidiController()->sendNoteOn(notes[i], 127, 0);
+      squidbox->getMidiController()->sendNoteOn(
+          notes[i], squidbox->getNoteOnVelocity(), 0);
     } else {
       // If the chord should be stopped, send a note off message
       squidbox->getMidiController()->sendNoteOff(notes[i], 127, 0);

@@ -6,6 +6,7 @@
 #include "util/note/Note.h"
 #include "util/scale/Scale.h"
 #include <gui/menu-item/preset/PresetMenuItem.h>
+#include "gui/menu-item/random-velocity/RandomVelocityMenuItem.h" //includes new random velocity for notes
 
 /**
  * @class CustomScene
@@ -19,6 +20,7 @@ private:
   PresetMenuItem
       *presetMenuItem;    ///< The menu item for selecting the preset.
   Keyboard *keyboard;     ///< The keyboard for playing chords.
+  RandomVelocityMenuItem *randomVelocityMenuItem; ///< The menu item for toggling random velocity.
   static const Note MIN_NOTE =
       NOTE_C1; ///< The minimum note that can be played.
   static const Note MAX_NOTE =
