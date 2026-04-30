@@ -3,6 +3,8 @@
 #include "gui/menu-item/octave/OctaveMenuItem.h"
 #include "scene/Scene.h"
 #include "util/note/Note.h"
+#include "gui/menu-item/random-velocity/RandomVelocityMenuItem.h"
+
 
 /**
  * @class DrumScene
@@ -15,7 +17,7 @@
 class DrumScene : public Scene {
 private:
   OctaveMenuItem *octaveMenuItem; ///< The menu item for selecting the octave.
-
+  RandomVelocityMenuItem *randomVelocityMenuItem; ///< The menu item for toggling random velocity.
 public:
   /**
    * @brief Construct a new DrumScene object.

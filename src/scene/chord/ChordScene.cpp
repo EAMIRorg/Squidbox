@@ -1,19 +1,23 @@
+#include "ChordScene.h"
 #include "Squidbox.h"
+#include "gui/menu-item/random-velocity/RandomVelocityMenuItem.h"
 
 ChordScene::ChordScene(Squidbox *squidbox) : Scene(squidbox, nullptr) {
-  // Create menu items for root note, scale, and chord type
+  // Create menu items for root note, scale, chord type, and random velocity
   rootMenuItem = new RootNoteMenuItem();
   scaleMenuItem = new ScaleMenuItem();
   chordTypeMenuItem = new ChordTypeMenuItem();
+  randomVelocityMenuItem = new RandomVelocityMenuItem(squidbox);
 
   // Create an array of menu items
-  MenuItem **menuItems = new MenuItem *[3];
+  MenuItem **menuItems = new MenuItem *[4];
   menuItems[0] = rootMenuItem;
   menuItems[1] = scaleMenuItem;
   menuItems[2] = chordTypeMenuItem;
+  menuItems[3] = randomVelocityMenuItem;
 
   // Create a new menu with the menu items
-  menu = new Menu("Chords", 3, menuItems, MAIN_SCENE);
+  menu = new Menu("Chords", 4, menuItems, MAIN_SCENE);
 
   // Create a new keyboard
   keyboard = new Keyboard(squidbox);
@@ -52,11 +56,9 @@ void ChordScene::playChord(int index, bool on) {
   // Play or stop playing the notes
   for (int i = 0; i < chordType->numNotes; i++) {
     keyboard->setKeyDown(notes[i], on);
-    if (on) {
-      // If the chord should be played, play the note
-      squidbox->getMidiController()->sendNoteOn(notes[i], 127, 0);
-    } else {
-      // If the chord should be stopped, stop playing the note
+    if (on) { // If the chord should be played, play the note
+      squidbox->getMidiController()->sendNoteOn(notes[i], squidbox->getNoteOnVelocity(), 0); //changed to have a randomized velocity if enabled
+    } else { // If the chord should be stopped, stop playing the note
       squidbox->getMidiController()->sendNoteOff(notes[i], 127, 0);
     }
   }

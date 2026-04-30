@@ -143,6 +143,55 @@ public:
    */
   const int getBatteryPercent();
 
+  /**
+   * @brief Returns whether random velocity is enabled
+   */
+  bool isRandomVelocityEnabled() const;
+
+  /**
+   * @brief Enable or disable random velocity
+   * @param enabled true = random velocity, false = fixed velocity
+   */
+  void setRandomVelocityEnabled(bool enabled);
+
+  /**
+   * @brief Toggle random velocity on/off
+   */
+  void toggleRandomVelocity();
+
+  /**
+   * @brief Get the velocity that should be used for a Note On
+   * @return Either a fixed velocity or a randomized one
+   */
+  uint8_t getNoteOnVelocity();
+
+  /**
+   * @brief Get the fixed velocity value
+   */
+  uint8_t getFixedVelocity() const;
+
+  /**
+   * @brief Set the fixed velocity value
+   */
+  void setFixedVelocity(uint8_t velocity);
+
+  /**
+   * @brief Set the random velocity range
+   * @param minVelocity minimum random velocity
+   * @param maxVelocity maximum random velocity
+   */
+  void setRandomVelocityRange(uint8_t minVelocity, uint8_t maxVelocity);
+
+  /**
+   * @brief Get the minimum random velocity
+   */
+  uint8_t getRandomVelocityMin() const;
+
+  /**
+   * @brief Get the maximum random velocity
+   */
+  uint8_t getRandomVelocityMax() const;
+
 private:
   Config *config;            ///< A pointer to the configuration of the Squidbox
   Scene *scenes[NUM_SCENES]; ///< An array of pointers to the scenes in the
@@ -151,13 +200,19 @@ private:
   Screen *screen;                ///< A pointer to the screen of the Squidbox
   Joystick *joystick;            ///< A pointer to the joystick of the Squidbox
   Knob *knob;                    ///< A pointer to the knob of the Squidbox
-  Button *backButton; ///< A pointer to the back button of the Squidbox
-  Button *okButton;   ///< A pointer to the OK button of the Squidbox
-  Button *buttons[NUM_BUTTONS]; ///< An array of pointers to the buttons of the
-                                ///< Squidbox
+  Button *backButton;            ///< A pointer to the back button of the Squidbox
+  Button *okButton;              ///< A pointer to the OK button of the Squidbox
+  Button *buttons[NUM_BUTTONS];  ///< An array of pointers to the buttons of the
+                                 ///< Squidbox
   MidiController
       *midiController; ///< A pointer to the MIDI controller of the Squidbox
   bool currentSceneInitialized = false; ///< A flag indicating whether the
                                         ///< current scene has been initialized
   Commander *commander; ///< A pointer to the commander of the Squidbox
+
+  // Velocity settings
+  bool randomVelocityEnabled = false;
+  uint8_t fixedVelocity = 127;
+  uint8_t randomVelocityMin = 70;
+  uint8_t randomVelocityMax = 127;
 };

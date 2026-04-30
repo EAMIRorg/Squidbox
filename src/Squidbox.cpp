@@ -35,6 +35,7 @@ void Squidbox::init() {
   midiController->begin();
   commander->begin();
   Config::begin();
+  randomSeed(micros()); //Added to ensure different random velocities each time the device is turned on
 
   // Initialize the scenes with this Squidbox instance
   scenes[MAIN_SCENE] = new MainScene(this);
@@ -116,4 +117,47 @@ const char *Squidbox::getName() {
   const char *deviceId = getDeviceId();
   sprintf(name, "Squidbox %s", deviceId);
   return name;
+}
+
+//All helper functions for random velocity below
+
+bool Squidbox::isRandomVelocityEnabled() const {
+  return randomVelocityEnabled;
+}
+
+void Squidbox::setRandomVelocityEnabled(bool enabled) {
+  randomVelocityEnabled = enabled;
+}
+
+void Squidbox::toggleRandomVelocity() {
+  randomVelocityEnabled = !randomVelocityEnabled;
+}
+
+uint8_t Squidbox::getNoteOnVelocity() {
+  if (randomVelocityEnabled) {
+    return random(randomVelocityMin, randomVelocityMax + 1);
+  }
+  return fixedVelocity;
+}
+
+uint8_t Squidbox::getFixedVelocity() const {
+  return fixedVelocity;
+}
+
+void Squidbox::setFixedVelocity(uint8_t velocity) {
+  fixedVelocity = velocity;
+}
+
+void Squidbox::setRandomVelocityRange(uint8_t minVelocity,
+                                      uint8_t maxVelocity) {
+  randomVelocityMin = minVelocity;
+  randomVelocityMax = maxVelocity;
+}
+
+uint8_t Squidbox::getRandomVelocityMin() const {
+  return randomVelocityMin;
+}
+
+uint8_t Squidbox::getRandomVelocityMax() const {
+  return randomVelocityMax;
 }

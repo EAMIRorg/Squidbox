@@ -1,16 +1,19 @@
 #include "DrumScene.h"
 #include "Squidbox.h"
+#include "gui/menu-item/random-velocity/RandomVelocityMenuItem.h"
 
 DrumScene::DrumScene(Squidbox *squidbox) : Scene(squidbox, nullptr) {
-  // Create a new menu item for the octave
+  // Create menu items
   octaveMenuItem = new OctaveMenuItem();
+  randomVelocityMenuItem = new RandomVelocityMenuItem(squidbox);
 
   // Create an array of menu items
-  MenuItem **menuItems = new MenuItem *[1];
+  MenuItem **menuItems = new MenuItem *[2];
   menuItems[0] = octaveMenuItem;
+  menuItems[1] = randomVelocityMenuItem;
 
   // Create a new menu with the menu items
-  menu = new Menu("Drums", 1, menuItems, MAIN_SCENE);
+  menu = new Menu("Drums", 2, menuItems, MAIN_SCENE);
 }
 
 void DrumScene::update() {
@@ -40,7 +43,8 @@ void DrumScene::playDrum(int index, bool on) {
 
   // Play or stop playing the note
   if (on) {
-    squidbox->getMidiController()->sendNoteOn(note, 127, 0);
+    squidbox->getMidiController()->sendNoteOn(
+        note, squidbox->getNoteOnVelocity(), 0);
   } else {
     squidbox->getMidiController()->sendNoteOff(note, 127, 0);
   }

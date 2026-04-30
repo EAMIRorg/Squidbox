@@ -7,12 +7,15 @@ NoteScene::NoteScene(Squidbox *squidbox) : Scene(squidbox, nullptr) {
   scaleMenuItem = new ScaleMenuItem();
 
   // Create an array of menu items
-  MenuItem **menuItems = new MenuItem *[2];
+  randomVelocityMenuItem = new RandomVelocityMenuItem(squidbox);
+
+  MenuItem **menuItems = new MenuItem *[3];
   menuItems[0] = rootMenuItem;
   menuItems[1] = scaleMenuItem;
+  menuItems[2] = randomVelocityMenuItem;
 
   // Create a new menu with the menu items
-  menu = new Menu("Chords", 2, menuItems, MAIN_SCENE);
+  menu = new Menu("Notes", 3, menuItems, MAIN_SCENE);
 
   // Create a new keyboard
   keyboard = new Keyboard(squidbox);
@@ -50,7 +53,7 @@ void NoteScene::playNote(int index, bool on) {
   // Play notes
   keyboard->setKeyDown(note, on);
   if (on) {
-    squidbox->getMidiController()->sendNoteOn(note, 127, 0);
+    squidbox->getMidiController()->sendNoteOn(note, squidbox->getNoteOnVelocity(), 0);
   } else {
     squidbox->getMidiController()->sendNoteOff(note, 127, 0);
   }

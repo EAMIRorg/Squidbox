@@ -1,5 +1,6 @@
 #pragma once
 
+#include "gui/menu-item/random-velocity/RandomVelocityMenuItem.h"
 #include "gui/keyboard/Keyboard.h"
 #include "gui/menu-item/chord-type/ChordTypeMenuItem.h"
 #include "gui/menu-item/root-note/RootNoteMenuItem.h"
@@ -21,6 +22,7 @@ private:
   RootNoteMenuItem
       *rootMenuItem;            ///< The menu item for selecting the root note.
   ScaleMenuItem *scaleMenuItem; ///< The menu item for selecting the scale.
+  RandomVelocityMenuItem *randomVelocityMenuItem; ///< The menu item for toggling random velocity.
   ChordTypeMenuItem
       *chordTypeMenuItem; ///< The menu item for selecting the chord type.
   Keyboard *keyboard;     ///< The keyboard for playing chords.

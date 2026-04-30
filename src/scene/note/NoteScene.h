@@ -7,6 +7,7 @@
 #include "util/ChordType.h"
 #include "util/note/Note.h"
 #include "util/scale/Scale.h"
+#include "gui/menu-item/random-velocity/RandomVelocityMenuItem.h" //includes new random velocity for notes
 
 /**
  * @class NoteScene
@@ -20,6 +21,7 @@ private:
   RootNoteMenuItem
       *rootMenuItem;            ///< The menu item for selecting the root note.
   ScaleMenuItem *scaleMenuItem; ///< The menu item for selecting the scale.
+  RandomVelocityMenuItem *randomVelocityMenuItem; ///< The menu item for toggling random velocity.
   Keyboard *keyboard;           ///< The keyboard for playing notes.
   static const Note MIN_NOTE =
       NOTE_C1; ///< The minimum note that can be played.
